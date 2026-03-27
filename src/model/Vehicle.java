@@ -45,12 +45,35 @@ public class Vehicle {
 	
 
 	public void settitle(String inputtitle) {
-		if(inputtitle!=null) {
+		if((inputtitle!= null ) && (!inputtitle.isEmpty())
+		&&(!inputtitle.matches(inputtitle))) {
 			title = inputtitle;
 		}
 		else
 		{
 			title  = "Unknown";
+		}
+	}
+	public void setVehicleCode() {
+		vehicleCode = id + " " + title;
+	}
+	
+	public void setPrice(float inputPrice) {
+		if (inputPrice > 0 && inputPrice < 10000 ) {
+			 price  = inputPrice; 
+		}
+		else {
+			price = 1;
+		}
+		
+	}
+	
+	public void seteType (EnergyType inputeType) {
+		if(inputeType!= null) {
+			eType = inputeType;
+		}
+		else {
+			eType = EnergyType.not_specified;
 		}
 	}
 
