@@ -1,5 +1,6 @@
 package model;
 
+import java.security.Identity;
 import java.util.Set;
 
 
@@ -76,6 +77,29 @@ public class Vehicle {
 			eType = EnergyType.not_specified;
 		}
 	}
+	public Vehicle(){
+		setid();
+		settitle("MB car");
+		setVehicleCode();
+		setPrice(2688899);
+		seteType(EnergyType.hybrid);
+		
+	}
+	public Vehicle (String inputtitle, float inputprice, EnergyType inputeType) {
+		setid();
+		settitle(inputtitle);
+		setVehicleCode();
+		setPrice(inputprice);
+		seteType(inputeType);
+		
+	}
+	//string
+	
+	public String toString() {
+		String result = id + " " + title + "(" + vehicleCode +")" + price + " " + eType;
+		return result;
+	}
+	
 
 }
 
