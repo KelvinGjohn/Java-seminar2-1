@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import service.MainService;
+
 public class Purchase {
 	private String userCardNo;
 	private ArrayList<Vehicle> shoppingList = new ArrayList<Vehicle>();
@@ -58,5 +60,56 @@ public class Purchase {
 		return result;
 	}
 	
+	public void addVehicleToShippingList(String inputVehicleCode, int quality) {
+		int howManyVecFindInStore = 0;
+		for(int i = 0; i < MainService.allVehiclesInStore.size(); i++) {
+			Vehicle tempG = MainService.allVehiclesInStore.get(i); 
+			if (tempG.getvehicleCode().equals(inputVehicleCode)) {
+				MainService.allVehiclesInStore.remove(tempG);
+				shoppingList.add(tempG);
+				howManyVecFindInStore++;
+			}
+		}
+		if (quality > howManyVecFindInStore) {
+			System.out.println("There is no " + quality + 
+					"vehicle with code " + inputVehicleCode);
+		}
+		else
+		{
+			System.out.println(inputVehicleCode);
+		}
+		
+	}
+	public void removeVehicleToShippingList(String inputVehicle) {
+		
+		boolean findVehicle = false;
 	
+		for (int i = 0; i < shoppingList.size(); i++) {
+			Vehicle tempV = shoppingList.get(i);
+			if (tempV.getvehicleCode().equals(inputVehicle)) {
+				shoppingList.remove(i);
+			
+				MainService.allVehiclesInStore.add(tempV);
+				findVehicle = true;
+		}
+	}
+		if (findVehicle) {
+			System.out.println("RETURN AFTER BUYING" + inputVehicle + "is removed");
+			
+		}
+		else
+		{
+			System.out.println("There is no vehicles with code " 
+					+ inputVehicle + " in the shopping list");
+					}
+				}
+				
+		public float calculateShoppingListValue() {
+					float sum = 0;
+					for(Vehicle tempV : shoppingList) {
+						sum = sum + tempV.getprice();
+					}
+					return sum;
+				}
 }
+				

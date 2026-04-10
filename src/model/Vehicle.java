@@ -96,7 +96,7 @@ public class Vehicle {
 	//string
 	
 	public String toString() {
-		String result = id + " " + title + "(" + vehicleCode +")" + price + " " + eType;
+		String result = id + " " + title + "(" + vehicleCode +")" + price + " eur " + eType;
 		return result;
 	}
 	
